@@ -2,7 +2,7 @@ FROM ubuntu:17.04
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install git -y \
+    && apt-get install git dialog -y \
     && git clone https://github.com/ErshKUS/OpenStreetMap.ru.git /var/www/osm_ru
 
 # Install project dependencies
