@@ -9,10 +9,9 @@ Listen 8000
 		AllowOverride All
 	</Directory>
 	<Directory /var/www/osmru/www>
-		Options +Indexes +FollowSymLinks -MultiViews
+		Options -Indexes +FollowSymLinks -MultiViews
 		AllowOverride All
-		Order allow,deny
-		allow from all
+		Require all granted
 	</Directory>
 
 	# ScriptAlias /api/ /var/www/osmru/www/api/
@@ -35,8 +34,7 @@ Listen 8000
     <Directory "/usr/share/doc/">
         Options +Indexes -MultiViews +FollowSymLinks
         AllowOverride All
-        Order deny,allow
-        Deny from all
-        Allow from 127.0.0.0/255.0.0.0 ::1/128
+        Require all denied
+        Require ip 127.0.0.0/255.0.0.0 ::1/128
     </Directory>
 </VirtualHost>
