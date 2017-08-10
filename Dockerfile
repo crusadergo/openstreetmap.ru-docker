@@ -6,7 +6,9 @@ RUN apt-get update -y \
     && git clone https://github.com/ErshKUS/OpenStreetMap.ru.git /var/www/osm_ru
 
 # Install project dependencies
-RUN apt-get install -y apache2 libapache2-mod-php7.0 php7.0 php7.0-curl
+RUN apt-get install -y apache2 \
+    && apt-get install -y php7.0 libapache2-mod-php7.0 php7.0-curl \
+    && service apache2 restart
 
 # Prepare to run
 RUN apt-get install -y wget \
