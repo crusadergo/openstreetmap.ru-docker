@@ -15,9 +15,9 @@ RUN a2ensite osmru \
     && a2enmod rewrite \
     && cd /var/www/osmru \
     && mkdir -p www/api \
-    && echo "Redirect /api/ http://openstreetmap.ru/api/" > www/api/.htaccess \
-    && service apache2 restart
+    && echo "Redirect /api/ http://openstreetmap.ru/api/" > www/api/.htaccess
 
 EXPOSE 8000
 
-CMD phpup -p 8000 /var/www/osmru/www
+CMD service apache2 restart \
+    && sleep infinity
