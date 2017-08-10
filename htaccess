@@ -29,12 +29,4 @@ Listen 8000
 	LogLevel warn
 
 	CustomLog /var/log/apache2/osm.ru-access.log combined
-
-    Alias /doc/ "/usr/share/doc/"
-    <Directory "/usr/share/doc/">
-        Options +Indexes -MultiViews +FollowSymLinks
-        AllowOverride All
-        Require all denied
-        Require ip 127.0.0.0/255.0.0.0 ::1/128
-    </Directory>
 </VirtualHost>
