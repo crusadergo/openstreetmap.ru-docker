@@ -7,16 +7,15 @@ RUN apt-get update -y \
 
 # Install project dependencies
 RUN apt-get install -y apache2 \
-    && apt-get install -y php7.0 libapache2-mod-php7.0 php7.0-curl \
-    && service apache2 restart
+    && apt-get install -y php7.0 libapache2-mod-php7.0 php7.0-curl
 
 # Prepare to run
-RUN apt-get install -y wget \
-    && wget https://raw.github.com/lox/phpup/master/phpup -O /usr/local/bin/phpup \
-    && chmod +x /usr/local/bin/phpup \
+ADD htaccess /etc/apache2/sites-available/osmru.conf
+RUN a2ensite osmru \
     && cd /var/www/osm_ru \
     && mkdir -p www/api \
-    && echo "Redirect /api/ http://openstreetmap.ru/api/" > www/api/.htaccess
+    && echo "Redirect /api/ http://openstreetmap.ru/api/" > www/api/.htaccess \
+    && service apache2 restart
 
 EXPOSE 8000
 
