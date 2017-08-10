@@ -3,19 +3,19 @@ Listen 8000
 	ServerAdmin webmaster@localhost
 	ServerName osmru
 
-	DocumentRoot /var/www/osm_ru/www
+	DocumentRoot /var/www/osmru/www
 	<Directory />
 		Options +FollowSymLinks
 		AllowOverride All
 	</Directory>
-	<Directory /var/www/osm_ru/www>
+	<Directory /var/www/osmru/www>
 		Options +Indexes +FollowSymLinks -MultiViews
 		AllowOverride All
 		Order allow,deny
 		allow from all
 	</Directory>
 
-	# ScriptAlias /api/ /var/www/osm_ru/www/api/
+	# ScriptAlias /api/ /var/www/osmru/www/api/
 	# <Directory "/path/to/repo/osmru/api">
 	# 	AllowOverride All
 	# 	Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch

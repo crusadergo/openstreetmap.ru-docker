@@ -3,7 +3,7 @@ FROM ubuntu:17.04
 RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install git dialog -y \
-    && git clone https://github.com/ErshKUS/OpenStreetMap.ru.git /var/www/osm_ru
+    && git clone https://github.com/ErshKUS/OpenStreetMap.ru.git /var/www/osmru
 
 # Install project dependencies
 RUN apt-get install -y apache2 \
@@ -13,11 +13,11 @@ RUN apt-get install -y apache2 \
 ADD htaccess /etc/apache2/sites-available/osmru.conf
 RUN a2ensite osmru \
     && a2enmod rewrite \
-    && cd /var/www/osm_ru \
+    && cd /var/www/osmru \
     && mkdir -p www/api \
     && echo "Redirect /api/ http://openstreetmap.ru/api/" > www/api/.htaccess \
     && service apache2 restart
 
 EXPOSE 8000
 
-CMD phpup -p 8000 /var/www/osm_ru/www
+CMD phpup -p 8000 /var/www/osmru/www
