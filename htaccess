@@ -1,0 +1,42 @@
+Listen 8000
+<VirtualHost *:8000>
+	ServerAdmin webmaster@localhost
+	ServerName osmru
+
+	DocumentRoot /var/www/osm_ru/www
+	<Directory />
+		Options +FollowSymLinks
+		AllowOverride All
+	</Directory>
+	<Directory /var/www/osm_ru/www>
+		Options +Indexes +FollowSymLinks -MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	# ScriptAlias /api/ /var/www/osm_ru/www/api/
+	# <Directory "/path/to/repo/osmru/api">
+	# 	AllowOverride All
+	# 	Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+	# 	Order allow,deny
+	# 	Allow from all
+	# </Directory>
+
+	ErrorLog /var/log/apache2/osm.ru-error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog /var/log/apache2/osm.ru-access.log combined
+
+    Alias /doc/ "/usr/share/doc/"
+    <Directory "/usr/share/doc/">
+        Options +Indexes -MultiViews +FollowSymLinks
+        AllowOverride All
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.0/255.0.0.0 ::1/128
+    </Directory>
+</VirtualHost>
