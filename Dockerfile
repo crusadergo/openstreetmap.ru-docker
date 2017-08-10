@@ -12,6 +12,7 @@ RUN apt-get install -y apache2 \
 # Prepare to run
 ADD htaccess /etc/apache2/sites-available/osmru.conf
 RUN a2ensite osmru \
+    && a2enmod rewrite \
     && cd /var/www/osm_ru \
     && mkdir -p www/api \
     && echo "Redirect /api/ http://openstreetmap.ru/api/" > www/api/.htaccess \
